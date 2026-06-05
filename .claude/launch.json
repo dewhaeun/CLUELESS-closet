@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "client",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["/Users/haeunkim/clueless_closet/start-client.sh"],
+      "port": 3000
+    }
+  ]
+}

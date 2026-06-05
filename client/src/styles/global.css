@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --blue:        #000080;
+  --blue-mid:    #1084d0;
+  --silver:      #d4d0c8;
+  --white:       #ffffff;
+  --highlight:   #ffffff;
+  --shadow:      #808080;
+  --dark-shadow: #404040;
+  --text:        #000000;
+}
+
+body {
+  background: #ffffff;
+  font-family: 'Tahoma', 'MS Sans Serif', Arial, sans-serif;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* ── WINDOW ─────────────────────────────── */
+.window {
+  background: var(--silver);
+  border: 2px solid;
+  border-color: var(--highlight) var(--dark-shadow) var(--dark-shadow) var(--highlight);
+  box-shadow: 1px 1px 0 var(--shadow);
+}
+
+.title-bar {
+  background: linear-gradient(to right, var(--blue) 0%, var(--blue-mid) 100%);
+  padding: 3px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+
+.title-bar-text {
+  color: white;
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title-bar-controls { display: flex; gap: 2px; }
+
+.title-btn {
+  width: 16px;
+  height: 14px;
+  background: var(--silver);
+  border: 1px solid;
+  border-color: var(--highlight) var(--dark-shadow) var(--dark-shadow) var(--highlight);
+  cursor: pointer;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--text);
+  line-height: 1;
+}
+
+.title-btn:active {
+  border-color: var(--dark-shadow) var(--highlight) var(--highlight) var(--dark-shadow);
+}
+
+.window-body {
+  padding: 16px;
+  background: var(--white);
+  margin: 2px;
+}
+
+/* ── BUTTONS ─────────────────────────────── */
+.win-btn {
+  background: var(--silver);
+  border: 2px solid;
+  border-color: var(--highlight) var(--dark-shadow) var(--dark-shadow) var(--highlight);
+  padding: 4px 16px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--text);
+  min-width: 75px;
+}
+
+.win-btn:active:not(:disabled) {
+  border-color: var(--dark-shadow) var(--highlight) var(--highlight) var(--dark-shadow);
+  padding: 5px 15px 3px 17px;
+}
+
+.win-btn:disabled {
+  color: var(--shadow);
+  cursor: default;
+}
+
+.win-btn-primary {
+  font-weight: bold;
+  border-width: 3px;
+}
+
+/* ── INPUTS ──────────────────────────────── */
+.win-input {
+  border: 2px solid;
+  border-color: var(--dark-shadow) var(--highlight) var(--highlight) var(--dark-shadow);
+  background: var(--white);
+  padding: 3px 6px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
+  outline: none;
+  width: 100%;
+}
+
+.win-select {
+  border: 2px solid;
+  border-color: var(--dark-shadow) var(--highlight) var(--highlight) var(--dark-shadow);
+  background: var(--white);
+  padding: 2px 4px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
+  width: 100%;
+}
+
+/* ── TASKBAR ─────────────────────────────── */
+.taskbar {
+  background: var(--silver);
+  border-bottom: 2px solid var(--dark-shadow);
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 4px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.y2k-brand {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  letter-spacing: 1px;
+  padding: 0 8px 0 0;
+  border-right: 2px solid var(--shadow);
+  margin-right: 4px;
+  color: var(--blue);
+}
+
+.tab {
+  background: var(--silver);
+  border: 2px solid;
+  border-color: var(--highlight) var(--dark-shadow) var(--dark-shadow) var(--highlight);
+  padding: 3px 14px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.tab.active {
+  background: var(--white);
+  border-bottom-color: var(--white);
+  padding-bottom: 4px;
+}
+
+/* ── MODAL ───────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* ── LAYOUT ──────────────────────────────── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.page-content {
+  flex: 1;
+  padding: 32px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+/* ── Y2K TITLE ───────────────────────────── */
+.y2k-title {
+  font-family: 'VT323', monospace;
+  line-height: 1;
+  color: var(--blue);
+}
+
+/* ── CAROUSEL ────────────────────────────── */
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.carousel-label {
+  font-weight: bold;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--shadow);
+}
+
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carousel-frame {
+  width: 200px;
+  height: 250px;
+  border: 2px solid;
+  border-color: var(--dark-shadow) var(--highlight) var(--highlight) var(--dark-shadow);
+  background: var(--silver);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-count {
+  font-size: 10px;
+  color: var(--shadow);
+}
+
+.carousel-empty {
+  color: var(--shadow);
+  font-size: 11px;
+  text-align: center;
+  padding: 12px;
+  line-height: 1.6;
+}
+
+.carousel-btn {
+  background: var(--silver);
+  border: 2px solid;
+  border-color: var(--highlight) var(--dark-shadow) var(--dark-shadow) var(--highlight);
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.carousel-btn:active:not(:disabled) {
+  border-color: var(--dark-shadow) var(--highlight) var(--highlight) var(--dark-shadow);
+}
+
+.carousel-btn:disabled {
+  color: var(--shadow);
+  cursor: default;
+}
+
+/* ── OUTFIT GRID ─────────────────────────── */
+.outfits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.outfit-card {
+  border: 2px solid;
+  border-color: var(--dark-shadow) var(--highlight) var(--highlight) var(--dark-shadow);
+  background: var(--silver);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+
+/* ── FORM ────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.error-msg  { color: #cc0000; font-size: 11px; margin: 2px 0; }
+.success-msg { color: #006600; font-size: 11px; margin: 2px 0; }
