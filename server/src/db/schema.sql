@@ -39,14 +39,22 @@ CREATE INDEX idx_items_user_id_category ON items(user_id, category);
 -- OUTFITS
 -- ─────────────────────────────────────────
 CREATE TABLE outfits (
-  id         SERIAL PRIMARY KEY,
-  user_id    INTEGER     NOT NULL REFERENCES users(id)  ON DELETE CASCADE,
-  top_id     INTEGER     NOT NULL REFERENCES items(id)  ON DELETE CASCADE,
-  bottom_id  INTEGER     NOT NULL REFERENCES items(id)  ON DELETE CASCADE,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-
-  -- 같은 유저가 동일한 조합을 중복 저장하지 못하게
-  UNIQUE (user_id, top_id, bottom_id)
+  id           SERIAL PRIMARY KEY,
+  user_id      INTEGER     NOT NULL REFERENCES users(id)  ON DELETE CASCADE,
+  top_id       INTEGER     NOT NULL REFERENCES items(id)  ON DELETE CASCADE,
+  bottom_id    INTEGER     NOT NULL REFERENCES items(id)  ON DELETE CASCADE,
+  outer_id     INTEGER              REFERENCES items(id)  ON DELETE SET NULL,
+  shoes_id     INTEGER              REFERENCES items(id)  ON DELETE SET NULL,
+  accessory_id INTEGER              REFERENCES items(id)  ON DELETE SET NULL,
+  created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE INDEX idx_outfits_user_id ON outfits(user_id);
+
+-- NULL 포함 조합 중복 저장 방지 (COALESCE로 NULL → 0 처리)
+CREATE UNIQUE INDEX outfits_unique_combination ON outfits (
+  user_id, top_id, bottom_id,
+  COALESCE(outer_id, 0),
+  COALESCE(shoes_id, 0),
+  COALESCE(accessory_id, 0)
+);
